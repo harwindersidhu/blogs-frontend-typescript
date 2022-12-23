@@ -6,6 +6,8 @@ interface HomeProps {
   blogs: Blog[];
   nextPage: any;
   prevPage: any;
+  totalPages: number;
+  currentPage: number;
 }
 
 const Home = (props: HomeProps) => {
@@ -23,12 +25,16 @@ const Home = (props: HomeProps) => {
       <span className="title">Blogs</span>
       <div className="home-blogs">{blogsItems}</div>
       <div className="pagination">
-        <button className="previous-button" onClick={props.prevPage}>
-          Prev
-        </button>
-        <button className="next-button" onClick={props.nextPage}>
-          Next
-        </button>
+        {props.currentPage > 1 && (
+          <button className="previous-button" onClick={props.prevPage}>
+            Prev
+          </button>
+        )}
+        {props.currentPage < props.totalPages && (
+          <button className="next-button" onClick={props.nextPage}>
+            Next
+          </button>
+        )}
       </div>
     </div>
   );
