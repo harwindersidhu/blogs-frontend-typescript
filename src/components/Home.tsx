@@ -5,11 +5,11 @@ import { useNavigate } from "react-router";
 
 interface HomeProps {
   blogs: Blog[];
-  nextPage: any;
-  prevPage: any;
+  nextPage(): void;
+  prevPage(): void;
   totalPages: number;
   currentPage: number;
-  setSlugValue(slug: string): any;
+  setSlugValue(slug: string): void;
 }
 
 const Home = (props: HomeProps) => {

@@ -4,7 +4,7 @@ interface BlogItemProps {
   title: string;
   image: string;
   date: string;
-  navigateToBlog: any;
+  navigateToBlog(): void;
 }
 
 const BlogItem = (props: BlogItemProps) => {
