@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Blog } from "../actions";
+import { useParams } from "react-router-dom";
 
 interface CurrentBlogProps {
   slug: string;
@@ -8,8 +9,12 @@ interface CurrentBlogProps {
 }
 
 const CurrentBlog = (props: CurrentBlogProps) => {
+  //If we will refresh page, sluf value will be cleared out.
+  //With following line of code we can get slug value from url.
+  let { slug } = useParams();
+
   useEffect(() => {
-    props.getBlog(props.slug);
+    props.getBlog(props.slug || slug);
   }, []);
 
   return (
