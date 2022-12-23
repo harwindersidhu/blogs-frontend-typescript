@@ -11,6 +11,11 @@ export interface CountPagesAction {
   payload: number;
 }
 
+/**
+ * We call this api to count total number of blogs
+ * and then we count total pages where each page contains six blogs.
+ * @returns 
+ */
 export const countBlogs = () => {
   let getBlogsApi = `/api/blogs/`;
   return async (dispatch: Dispatch) => {

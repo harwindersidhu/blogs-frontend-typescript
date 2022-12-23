@@ -8,6 +8,11 @@ export interface GetBlogBySlugAction {
   payload: Blog;
 }
 
+/**
+ * We call this api to get a blog with a given slug value.
+ * @param slug 
+ * @returns 
+ */
 export const getBlogBySlug = (slug: string) => {
   let getselectedBlogApi = `/api/blogs/slug/${slug}`;
   return async (dispatch: Dispatch) => {

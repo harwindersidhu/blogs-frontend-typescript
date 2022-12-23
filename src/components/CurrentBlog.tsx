@@ -9,8 +9,11 @@ interface CurrentBlogProps {
 }
 
 const CurrentBlog = (props: CurrentBlogProps) => {
-  //If we will refresh page, sluf value will be cleared out.
-  //With following line of code we can get slug value from url.
+  /**
+   * If we will refresh page, slug value will be cleared out.
+   * With following line of code we can get slug value from url
+   * and hence api will run again to get blog.
+   */
   let { slug } = useParams();
 
   useEffect(() => {

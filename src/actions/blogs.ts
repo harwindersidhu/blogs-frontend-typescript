@@ -16,6 +16,11 @@ export interface FetchBlogssAction {
   payload: Blog[];
 }
 
+/**
+ * Given the page number, we can get a list of blogs. Each page will return maximum six blogs.
+ * @param page 
+ * @returns 
+ */
 export const fetchBlogs = (page: number) => {
   let getBlogsApi = `/api/blogs/${page}`;
   return async (dispatch: Dispatch) => {
