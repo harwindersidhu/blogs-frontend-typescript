@@ -4,6 +4,8 @@ import BlogItem from "./BlogItem";
 
 interface HomeProps {
   blogs: Blog[];
+  nextPage: any;
+  prevPage: any;
 }
 
 const Home = (props: HomeProps) => {
@@ -21,8 +23,12 @@ const Home = (props: HomeProps) => {
       <span className="title">Blogs</span>
       <div className="home-blogs">{blogsItems}</div>
       <div className="pagination">
-        <button className="previous-button">Prev</button>
-        <button className="next-button">Next</button>
+        <button className="previous-button" onClick={props.prevPage}>
+          Prev
+        </button>
+        <button className="next-button" onClick={props.nextPage}>
+          Next
+        </button>
       </div>
     </div>
   );

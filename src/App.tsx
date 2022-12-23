@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { StoreState } from "./reducers";
 import { Blog, fetchBlogs } from "./actions";
@@ -11,13 +11,27 @@ interface AppProps {
 }
 
 const _App = (props: AppProps) => {
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
-    props.fetchBlogs(1);
-  }, []);
+    props.fetchBlogs(page);
+  }, [page]);
+
+  const nextPage = (): void => {
+    if (page < 3) {
+      setPage((prev) => prev + 1);
+    }
+  };
+
+  const prevPage = (): void => {
+    if (page > 0) {
+      setPage((prev) => prev - 1);
+    }
+  };
 
   return (
     <div className="App">
-      <Home blogs={props.blogs} />
+      <Home blogs={props.blogs} nextPage={nextPage} prevPage={prevPage} />
     </div>
   );
 };
