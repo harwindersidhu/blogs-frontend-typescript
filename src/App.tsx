@@ -21,13 +21,13 @@ const _App = (props: AppProps) => {
   }, [page]);
 
   const nextPage = (): void => {
-    if (page < 3) {
+    if (page < props.totalPages) {
       setPage((prev) => prev + 1);
     }
   };
 
   const prevPage = (): void => {
-    if (page > 0) {
+    if (page > 1) {
       setPage((prev) => prev - 1);
     }
   };
