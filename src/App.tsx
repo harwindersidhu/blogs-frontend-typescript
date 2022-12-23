@@ -19,7 +19,6 @@ interface AppProps {
 const _App = (props: AppProps) => {
   const [page, setPage] = useState(1);
   const [slugValue, setSlugValue] = useState("");
-  console.log("Slug Value: ", slugValue);
 
   useEffect(() => {
     props.countBlogs();
