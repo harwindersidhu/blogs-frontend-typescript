@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { StoreState } from "./reducers";
 import { Blog, fetchBlogs, countBlogs } from "./actions";
 import Home from "./components/Home";
+import CurrentBlog from "./components/CurrentBlog";
 import "./style.scss";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 interface AppProps {
   blogs: Blog[];
@@ -34,13 +36,25 @@ const _App = (props: AppProps) => {
 
   return (
     <div className="App">
-      <Home
-        blogs={props.blogs}
-        nextPage={nextPage}
-        prevPage={prevPage}
-        totalPages={props.totalPages}
-        currentPage={page}
-      />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route
+              index
+              element={
+                <Home
+                  blogs={props.blogs}
+                  nextPage={nextPage}
+                  prevPage={prevPage}
+                  totalPages={props.totalPages}
+                  currentPage={page}
+                />
+              }
+            />
+            <Route path="/blog/:slug" element={<CurrentBlog />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
