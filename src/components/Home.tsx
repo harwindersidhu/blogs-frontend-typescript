@@ -20,6 +20,10 @@ const Home = (props: HomeProps) => {
     <div className="home">
       <span className="title">Blogs</span>
       <div className="home-blogs">{blogsItems}</div>
+      <div className="pagination">
+        <button className="previous-button">Prev</button>
+        <button className="next-button">Next</button>
+      </div>
     </div>
   );
 };
