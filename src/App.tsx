@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { StoreState } from "./reducers";
 import { Blog, fetchBlogs } from "./actions";
+import Home from "./components/Home";
 
 interface AppProps {
   blogs: Blog[];
@@ -13,11 +14,11 @@ const _App = (props: AppProps) => {
     props.fetchBlogs(1);
   }, []);
 
-  const blogs = props.blogs.map((blog: Blog) => {
-    return <div key={blog.id}>{blog.title}</div>;
-  });
-
-  return <div>{blogs}</div>;
+  return (
+    <div className="App">
+      <Home blogs={props.blogs} />
+    </div>
+  );
 };
 
 const mapStateToProps = (state: StoreState): { blogs: Blog[] } => {
