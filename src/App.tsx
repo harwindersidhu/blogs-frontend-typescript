@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { StoreState } from "./reducers";
 import { Blog, fetchBlogs } from "./actions";
 import Home from "./components/Home";
+import "./style.scss";
 
 interface AppProps {
   blogs: Blog[];
