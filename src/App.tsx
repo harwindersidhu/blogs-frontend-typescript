@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { StoreState } from "./reducers";
-import { Blog, fetchBlogs, countBlogs } from "./actions";
+import { Blog, fetchBlogs, countBlogs, getBlogBySlug } from "./actions";
 import Home from "./components/Home";
 import CurrentBlog from "./components/CurrentBlog";
 import "./style.scss";
@@ -12,10 +12,14 @@ interface AppProps {
   fetchBlogs(page: number): any;
   totalPages: number;
   countBlogs: any;
+  selectedBlog: Blog;
+  getBlogBySlug(slug: string): any;
 }
 
 const _App = (props: AppProps) => {
   const [page, setPage] = useState(1);
+  const [slugValue, setSlugValue] = useState("");
+  console.log("Slug Value: ", slugValue);
 
   useEffect(() => {
     props.countBlogs();
@@ -48,10 +52,20 @@ const _App = (props: AppProps) => {
                   prevPage={prevPage}
                   totalPages={props.totalPages}
                   currentPage={page}
+                  setSlugValue={(slug: string) => setSlugValue(slug)}
                 />
               }
             />
-            <Route path="/blog/:slug" element={<CurrentBlog />} />
+            <Route
+              path="/blog/:slug"
+              element={
+                <CurrentBlog
+                  slug={slugValue}
+                  getBlog={props.getBlogBySlug}
+                  blog={props.selectedBlog}
+                />
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
@@ -61,11 +75,16 @@ const _App = (props: AppProps) => {
 
 const mapStateToProps = (
   state: StoreState
-): { blogs: Blog[]; totalPages: number } => {
+): { blogs: Blog[]; totalPages: number; selectedBlog: Blog } => {
   return {
     blogs: state.blogs,
     totalPages: state.totalPages,
+    selectedBlog: state.selectedBlog,
   };
 };
 
-export const App = connect(mapStateToProps, { fetchBlogs, countBlogs })(_App);
+export const App = connect(mapStateToProps, {
+  fetchBlogs,
+  countBlogs,
+  getBlogBySlug,
+})(_App);

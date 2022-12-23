@@ -4,6 +4,7 @@ interface BlogItemProps {
   title: string;
   image: string;
   date: string;
+  navigateToBlog: any;
 }
 
 const BlogItem = (props: BlogItemProps) => {
@@ -28,7 +29,7 @@ const BlogItem = (props: BlogItemProps) => {
   const dateString = `Published on ${day} ${month}, ${year}`;
 
   return (
-    <div className="blog-item">
+    <div className="blog-item" onClick={props.navigateToBlog}>
       <span className="blog-title">{props.title}</span>
       <img src={props.image} alt="" />
       <p>{dateString}</p>

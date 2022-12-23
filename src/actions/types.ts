@@ -1,4 +1,5 @@
 export enum ActionTypes {
   fetchBlogs,
-  countPages
+  countPages,
+  getBlogBySlug
 }

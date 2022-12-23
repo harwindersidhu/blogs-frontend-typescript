@@ -1,6 +1,7 @@
 import React from "react";
 import { Blog } from "../actions";
 import BlogItem from "./BlogItem";
+import { useNavigate } from "react-router";
 
 interface HomeProps {
   blogs: Blog[];
@@ -8,15 +9,25 @@ interface HomeProps {
   prevPage: any;
   totalPages: number;
   currentPage: number;
+  setSlugValue(slug: string): any;
 }
 
 const Home = (props: HomeProps) => {
+  const navigate = useNavigate();
+
+  const navigateToBlog = (slug: string) => {
+    props.setSlugValue(slug);
+    const blogPath = `/blog/${slug}`;
+    navigate(blogPath);
+  };
+
   const blogsItems = props.blogs.map((blog: Blog) => (
     <BlogItem
       key={blog.id}
       title={blog.title}
       image={blog.image}
       date={blog.published_at}
+      navigateToBlog={() => navigateToBlog(blog.slug)}
     />
   ));
 
