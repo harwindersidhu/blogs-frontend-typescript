@@ -7,7 +7,7 @@ interface BlogItemProps {
   navigateToBlog(): void;
 }
 
-const BlogItem = (props: BlogItemProps) => {
+const changeDateFormat = (dateProp: string) => {
   const months = [
     "Jan",
     "Feb",
@@ -22,11 +22,15 @@ const BlogItem = (props: BlogItemProps) => {
     "Nov",
     "Dec",
   ];
-  const date = new Date(props.date);
+  const date = new Date(dateProp);
   const day = date.getDate();
-  const month = months[date.getMonth() - 1];
+  const monthName = months[date.getMonth()];
   const year = date.getFullYear();
-  const dateString = `Published on ${day} ${month}, ${year}`;
+  return `Published on ${day} ${monthName}, ${year}`;
+};
+
+const BlogItem = (props: BlogItemProps) => {
+  const dateString = changeDateFormat(props.date);
 
   return (
     <div className="blog-item" onClick={props.navigateToBlog}>
