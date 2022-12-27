@@ -7,7 +7,7 @@ interface BlogItemProps {
   navigateToBlog(): void;
 }
 
-const changeDateFormat = (dateProp: string) => {
+const changeDateFormat = (dateProp: string): string => {
   const months = [
     "Jan",
     "Feb",
