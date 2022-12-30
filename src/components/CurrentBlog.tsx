@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 interface CurrentBlogProps {
   slug: string;
   getBlog: any;
-  blog: Blog;
+  blog?: Blog;
 }
 
 const CurrentBlog = (props: CurrentBlogProps) => {
@@ -22,7 +22,9 @@ const CurrentBlog = (props: CurrentBlogProps) => {
 
   return (
     <div className="blog">
-      <div dangerouslySetInnerHTML={{ __html: props.blog.content }} />
+      {props.blog && (
+        <div dangerouslySetInnerHTML={{ __html: props.blog.content }} />
+      )}
     </div>
   );
 };

@@ -12,7 +12,7 @@ interface AppProps {
   fetchBlogs(page: number): any;
   totalPages: number;
   countBlogs: any;
-  selectedBlog: Blog;
+  selectedBlog?: Blog;
   getBlogBySlug(slug: string): any;
 }
 
